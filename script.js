@@ -4,6 +4,7 @@ const sliderValue = document.getElementById("sliderValue");
 const resetBtn = document.getElementById("resetBtn");
 const colorPicker = document.getElementById("colorPicker");
 const rainbowBtn = document.getElementById('rainbowBtn')
+const eraserBtn = document.getElementById('eraserBtn');
 sliderValue.innerHTML = slider.value + 'x' + slider.value;
 
 
@@ -22,11 +23,19 @@ function createNewGrid() {
     let gridItem = document.createElement('div');
     gridItem.classList.add('cell');
     gridItem.addEventListener('mouseover', setColors);
+    gridItem.addEventListener('click', setColors);
     grid.insertAdjacentElement('beforeend', gridItem);
   }
 }
 
+let mouseClicked = false
+document.body.onmousedown = () => (mouseClicked = true)
+document.body.onmouseup = () => (mouseClicked = false)
+
 function setColors(e) {
+  if (e.type === 'mouseover' && !mouseClicked) return;
+
+  else {
   switch (currentColor) {
     case "default":
       e.target.style.backgroundColor = 'black';
@@ -38,8 +47,13 @@ function setColors(e) {
 
     case "color":
       e.target.style.backgroundColor = `${colorPicker.value}`;
-
+      break;
+    
+    case "eraser":
+    if (e.type === 'click') e.target.style.backgroundColor = 'white';
+      break;
   }
+}
 }
 
 function randomRGB() {
@@ -74,7 +88,10 @@ function resetGrid() {
     cell.removeAttribute('style');
   })
 }
-
+eraserBtn.addEventListener('click', () => {
+  currentColor = "eraser";
+  setColors();
+});
 resetBtn.addEventListener('click', resetGrid);
 rainbowBtn.addEventListener('click', () => {
   currentColor = "rainbow";
