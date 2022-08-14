@@ -50,6 +50,7 @@ function randomRGB() {
 }
 
 function removeChildren(grid) {
+  console.log('Removing Children');
   while (grid.firstChild) {
     grid.removeChild(grid.firstChild);
   }
@@ -67,6 +68,8 @@ colorPicker.oninput = () => {
 }
 
 function resetGrid() {
+  gridItems = document.querySelectorAll('.cell');
+  console.log("Hi!");
   gridItems.forEach(cell => {
     cell.removeAttribute('style');
   })
