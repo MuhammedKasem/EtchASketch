@@ -23,10 +23,10 @@ body {
 
 .wrapper {
   display: flex;
-  width: 50%;
+  width: 100%;
   align-self: center;
   align-items: center;
-  flex-direction: column;
+  justify-content: space-evenly;
 }
 
 .slideContainer {
@@ -35,4 +35,15 @@ body {
   align-items: center;
   justify-content: center;
   text-align: center;
+}
+
+.userControls {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.gridWrapper {
+  border: black solid 2px;
+  border-radius: 3px;
 }
