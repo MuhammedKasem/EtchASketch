@@ -5,6 +5,8 @@ const resetBtn = document.getElementById("resetBtn");
 const colorPicker = document.getElementById("colorPicker");
 const rainbowBtn = document.getElementById('rainbowBtn')
 const eraserBtn = document.getElementById('eraserBtn');
+const colorBtn = document.getElementById('colorBtn');
+
 sliderValue.innerHTML = slider.value + 'x' + slider.value;
 
 
@@ -36,24 +38,24 @@ function setColors(e) {
   if (e.type === 'mouseover' && !mouseClicked) return;
 
   else {
-  switch (currentColor) {
-    case "default":
-      e.target.style.backgroundColor = 'black';
-      break;
+    switch (currentColor) {
+      case "default":
+        e.target.style.backgroundColor = 'black';
+        break;
 
-    case "rainbow":
-      e.target.style.backgroundColor = `${randomRGB()}`;
-      break;
+      case "rainbow":
+        e.target.style.backgroundColor = `${randomRGB()}`;
+        break;
 
-    case "color":
-      e.target.style.backgroundColor = `${colorPicker.value}`;
-      break;
-    
-    case "eraser":
-    if (e.type === 'click') e.target.style.backgroundColor = 'white';
-      break;
+      case "color":
+        e.target.style.backgroundColor = `${colorPicker.value}`;
+        break;
+
+      case "eraser":
+        if (e.type === 'click') e.target.style.backgroundColor = 'white';
+        break;
+    }
   }
-}
 }
 
 function randomRGB() {
@@ -92,6 +94,13 @@ eraserBtn.addEventListener('click', () => {
   currentColor = "eraser";
   setColors();
 });
+
+colorBtn.addEventListener('click', () => {
+  currentColor = "color";
+  setColors();
+})
+
+
 resetBtn.addEventListener('click', resetGrid);
 rainbowBtn.addEventListener('click', () => {
   currentColor = "rainbow";
