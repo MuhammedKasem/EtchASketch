@@ -1,20 +1,18 @@
 const grid = document.querySelector('.grid-container');
 const slider = document.getElementById("myRange");
 const sliderValue = document.getElementById("sliderValue");
-const resetBtn = document.getElementById("resetBtn");
+const resetBtn = document.querySelector(".resetBtn");
 const colorPicker = document.getElementById("colorPicker");
-const rainbowBtn = document.getElementById('rainbowBtn')
-const eraserBtn = document.getElementById('eraserBtn');
-const colorBtn = document.getElementById('colorBtn');
+const rainbowBtn = document.querySelector('.rainbowBtn')
+const eraserBtn = document.querySelector('.eraserBtn');
+const colorBtn = document.querySelector('.colorBtn');
 
 sliderValue.innerHTML = slider.value + 'x' + slider.value;
-
 
 let gridSize = slider.value;
 let gridItems = document.querySelectorAll('.cell');
 let currentColor = "default";
 
-createNewGrid();
 
 function createNewGrid() {
   gridSize = slider.value;
@@ -66,7 +64,6 @@ function randomRGB() {
 }
 
 function removeChildren(grid) {
-  console.log('Removing Children');
   while (grid.firstChild) {
     grid.removeChild(grid.firstChild);
   }
@@ -78,31 +75,18 @@ slider.onchange = function() {
   createNewGrid();
 }
 
-colorPicker.oninput = () => {
-  currentColor = "color";
-  setColors();
-}
 
 function resetGrid() {
   gridItems = document.querySelectorAll('.cell');
-  console.log("Hi!");
   gridItems.forEach(cell => {
     cell.removeAttribute('style');
   })
 }
-eraserBtn.addEventListener('click', () => {
-  currentColor = "eraser";
-  setColors();
-});
-
-colorBtn.addEventListener('click', () => {
-  currentColor = "color";
-  setColors();
-})
-
-
+colorPicker.oninput = () => { currentColor = "color"; }
+eraserBtn.addEventListener('click', () => { currentColor = "eraser"; });
+colorBtn.addEventListener('click', () => { currentColor = "color"; });
 resetBtn.addEventListener('click', resetGrid);
-rainbowBtn.addEventListener('click', () => {
-  currentColor = "rainbow";
-  setColors();
-})
+rainbowBtn.addEventListener('click', () => { currentColor = "rainbow"; });
+
+
+createNewGrid();

@@ -4,9 +4,11 @@
   font-family: 'Poppins', sans-serif;
  }
 body {
+  height: 100vh;
   margin: 0;
   display: flex;
   flex-direction: column;
+  background-color: lightgray;
   flex: 1;
 }
 
@@ -18,19 +20,27 @@ body {
 
 .cell {
   border: 1px rgba(0, 0, 0, 0.041) solid;
+  background-color: white;
+}
+
+.cell.nogrid {
+  border: none;
 }
 
 .title {
   display: flex;
   justify-content: center;
   color: gold;
+  font-size: 3em;
+  -webkit-text-stroke-width: 2px;
+  -webkit-text-stroke-color: black;
   font-weight: 800;
+  
 }
 
 .wrapper {
   display: flex;
   width: 100%;
-  height: 100vh;
   align-self: center;
   align-items: center;
   justify-content: space-evenly;
@@ -54,4 +64,47 @@ body {
 .gridWrapper {
   border: black solid 2px;
   border-radius: 3px;
+}
+
+.resetBtn, .eraserBtn, .rainbowBtn, .colorBtn {
+  background-color: cyan;
+  color: black;
+  font-size: 1em;
+}
+
+/* #rainbowBtn { */
+  /* background-image: linear-gradient(to right, red,orange,yellow,green,blue,indigo,violet); */
+/* } */
+
+.resetBtn.active, .eraserBtn.active, .rainbowBtn.active, .colorBtn.active {
+  background-color: black;
+  color: white;
+}
+
+#myRange {
+ -webkit-appearance: none;  /* Override default CSS styles */
+  appearance: none;
+  width: 100%; /* Full-width */
+  height: 10px; /* Specified height */
+  background: white; /* Grey background */
+  outline: none; /* Remove outline */
+  opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+  -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+  transition: opacity .2s; -webkit-appearance: none;  /* Override default CSS styles */
+  border-radius: 5px;
+}
+
+#myRange::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Override default look */
+  appearance: none;
+  width: 25px; /* Set a specific slider handle width */
+  height: 25px; /* Slider handle height */
+  background: black; /* Green background */
+  cursor: pointer; /* Cursor on hover */
+}
+#colorPicker {
+   -webkit-appearance: none;
+   width: 100%;
+   height: 40px;
+   border: none;
 }
