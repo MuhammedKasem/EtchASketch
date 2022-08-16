@@ -1,3 +1,4 @@
+// HTML Elements
 const grid = document.querySelector('.grid-container');
 const slider = document.getElementById("myRange");
 const sliderValue = document.getElementById("sliderValue");
@@ -13,7 +14,7 @@ let gridSize = slider.value;
 let gridItems = document.querySelectorAll('.cell');
 let currentColor = "default";
 
-
+// Creates a new grid with given user parameters and adds listeners to each cell
 function createNewGrid() {
   gridSize = slider.value;
   let squares = gridSize * gridSize;
@@ -32,6 +33,7 @@ let mouseClicked = false
 document.body.onmousedown = () => (mouseClicked = true)
 document.body.onmouseup = () => (mouseClicked = false)
 
+// Determines which mode the user is in and assigns the proper colors
 function setColors(e) {
   if (e.type === 'mouseover' && !mouseClicked) return;
 
@@ -50,12 +52,13 @@ function setColors(e) {
         break;
 
       case "eraser":
-        if (e.type === 'click') e.target.style.backgroundColor = 'white';
+        e.target.style.backgroundColor = 'white';
         break;
     }
   }
 }
 
+// Returns a random RGB value to use for rainbow mode
 function randomRGB() {
   let x = Math.floor(Math.random() * 256);
   let y = Math.floor(Math.random() * 256);
@@ -63,30 +66,31 @@ function randomRGB() {
   return "rgb(" + x + "," + y + "," + z + ")";
 }
 
+// Resets the grid
 function removeChildren(grid) {
   while (grid.firstChild) {
     grid.removeChild(grid.firstChild);
   }
 }
 
-slider.onchange = function() {
+slider.oninput = function() {
   removeChildren(grid);
   sliderValue.innerHTML = this.value + 'x' + this.value;
   createNewGrid();
 }
 
-
+// Resets all styling on grid cells
 function resetGrid() {
   gridItems = document.querySelectorAll('.cell');
   gridItems.forEach(cell => {
     cell.removeAttribute('style');
   })
 }
+
 colorPicker.oninput = () => { currentColor = "color"; }
 eraserBtn.addEventListener('click', () => { currentColor = "eraser"; });
 colorBtn.addEventListener('click', () => { currentColor = "color"; });
 resetBtn.addEventListener('click', resetGrid);
 rainbowBtn.addEventListener('click', () => { currentColor = "rainbow"; });
-
 
 createNewGrid();
