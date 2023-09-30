@@ -1,7 +1,7 @@
 # EtchASketch
 
 # Live Demo
- - https://wryskie.github.io/EtchASketch/
+ - https://MuhammedKasem.github.io/EtchASketch/
 
 # The Task
  - Create a working grid that can resize based on the users input.
